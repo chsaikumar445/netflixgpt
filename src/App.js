@@ -1,9 +1,7 @@
-import "./App.css";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Body from "./pages/Body";
 
 function App() {
-  <Home />;
+  return <Body />;
 }
 
 export default App;
