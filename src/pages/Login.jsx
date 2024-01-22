@@ -1,12 +1,25 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "../components/Header";
+import validdata from "../utils/validdata";
 
 const Login = () => {
   const [toggleForm, setToggleFrom] = useState(true);
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const email = useRef();
+  const password = useRef();
 
   const toggleSignInForm = () => {
     const newval = !toggleForm;
     setToggleFrom(!toggleForm);
+  };
+
+  const handleValidation = () => {
+    console.log(email.current.value, password.current.value);
+    const message = validdata(email.current.value, password.current.value);
+    // alert(message);
+    setErrorMessage(message);
+    if (!message) alert("success");
   };
 
   return (
@@ -18,35 +31,46 @@ const Login = () => {
           alt="bgimg"
         />
       </div>
-      <form className="absolute p-12 bg-black w-4/12 flex flex-col my-36 mx-auto right-0 left-0 bg-opacity-85">
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="absolute p-12 bg-black w-4/12 flex flex-col my-36 mx-auto right-0 left-0 bg-opacity-85">
         <h1
           className="font-bold text-3xl text-white mx-2 mb-4"
           onClick={toggleSignInForm}>
           {toggleForm ? "Sign In" : "Sign Up"}
         </h1>
         <input
+          ref={email}
           type="email"
-          className="py-4 px-4 m-2 rounded-sm bg-gray-800"
+          className="py-4 px-4 m-2 rounded-sm bg-gray-800 text-white"
           placeholder="Email"
         />
         {!toggleForm ? (
           <input
             type="text"
-            className="py-4 px-4 m-2 rounded-sm bg-gray-800"
+            className="py-4 px-4 m-2 rounded-sm bg-gray-800 text-white"
             placeholder="Full Name"
           />
         ) : (
           ""
         )}
         <input
+          ref={password}
           type="password"
-          className="py-4 px-4 m-2 rounded-sm bg-gray-800"
+          className="py-4 px-4 m-2 rounded-sm bg-gray-800 text-white"
           placeholder="Password"
         />
-        <button className="px-20 py-4 my-5 mx-2 rounded-sm text-white bg-red-600">
+        {errorMessage ? (
+          <p className="text-white p-4 m-2 bg-orange-500">{errorMessage}</p>
+        ) : (
+          ""
+        )}
+        <button
+          className="px-20 py-4 my-5 mx-1 rounded-sm text-white bg-red-600"
+          onClick={handleValidation}>
           {toggleForm ? " Sign In" : " Sign Up"}
         </button>
-        <p className="text-gray-400 mx-2 text-lg" onClick={toggleSignInForm}>
+        <span className="text-gray-400 mx-2 text-lg" onClick={toggleSignInForm}>
           {toggleForm ? (
             <p>
               New to Netflix?
@@ -62,7 +86,7 @@ const Login = () => {
               </span>
             </p>
           )}
-        </p>
+        </span>
       </form>
     </div>
   );
