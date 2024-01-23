@@ -26,8 +26,10 @@ const Home = () => {
             alt="bgimgnetflix"
           />
         </div>
-        <div className=" text-white font-bold text-center z-20 absolute left-20 top-20 mx-20 my-40 ml-40">
-          <h1 className="text-5xl">Unlimited Movies,Tv shows, and More</h1>
+        <div className=" text-white  text-center z-20 absolute left-20 top-20 mx-20 my-40 ml-40">
+          <h1 className="text-5xl font-bold">
+            Unlimited Movies,Tv shows, and More
+          </h1>
           <p className="text-3xl text-center mt-5">
             Watch Anywhere,cancel anytime
           </p>
