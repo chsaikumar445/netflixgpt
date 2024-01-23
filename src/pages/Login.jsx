@@ -34,7 +34,7 @@ const Login = () => {
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="absolute p-12 bg-black w-4/12 z-20 flex flex-col my-36 mx-auto right-0 left-0 bg-opacity-85">
+        className="absolute p-8 bg-black w-4/12 z-20 flex flex-col my-36 mx-auto right-0 left-0 bg-opacity-85">
         <h1
           className="font-bold text-3xl text-white mx-2 mb-4"
           onClick={toggleSignInForm}>
