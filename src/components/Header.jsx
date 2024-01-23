@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="absolute z-10 top-5 left-20 ">
+    <div className="absolute z-10 top-5 left-20  ">
       <Link to={"/"}>
         <img
           className="w-48"

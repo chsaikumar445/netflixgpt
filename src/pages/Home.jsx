@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="bg-black bg-gradient-to-b from-black z-10 w-full">
+    <div className="bg-black z-10 w-full h-full">
       <section>
-        <div className="flex justify-between bg-black bg-gradient-to-b from-black max-w-6xl mx-auto">
+        <div className="flex justify-between bg-gradient-to-b from-black to-transparent w-full">
           <Header />
           <div className="absolute right-12 mt-10 z-20">
             <select className="mr-10 px-4 py-2 text-l bg-transparent text-white  border-2">
