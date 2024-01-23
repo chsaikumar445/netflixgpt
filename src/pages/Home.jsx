@@ -26,8 +26,8 @@ const Home = () => {
             alt="bgimgnetflix"
           />
         </div>
-        <div className=" text-white z-20 absolute left-20 top-15 mx-20 my-40 ml-40">
-          <h1 className="text-4xl">Unlimited Movies,Tv shows, and More</h1>
+        <div className=" text-white font-bold text-center z-20 absolute left-20 top-20 mx-20 my-40 ml-40">
+          <h1 className="text-5xl">Unlimited Movies,Tv shows, and More</h1>
           <p className="text-3xl text-center mt-5">
             Watch Anywhere,cancel anytime
           </p>
@@ -44,7 +44,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <div className="bg-black  absolute h-screen w-full opacity-70 top-0 left-0"></div>
+      <div className="bg-black  absolute h-screen w-full opacity-65 top-0 left-0"></div>
     </div>
   );
 };
