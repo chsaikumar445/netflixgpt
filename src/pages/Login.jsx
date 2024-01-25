@@ -1,13 +1,22 @@
 import { useRef, useState } from "react";
 import Header from "../components/Header";
 import validdata from "../utils/validdata";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
+import { apiKey } from "../utils/env";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [toggleForm, setToggleFrom] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-
+  console.log(apiKey);
   const email = useRef();
   const password = useRef();
+
+  const navigate = useNavigate();
 
   const toggleSignInForm = () => {
     setToggleFrom(!toggleForm);
@@ -16,9 +25,45 @@ const Login = () => {
   const handleValidation = () => {
     console.log(email.current.value, password.current.value);
     const message = validdata(email.current.value, password.current.value);
-    // alert(message);
-    setErrorMessage(message);
-    if (!message) alert("success");
+    if (message) {
+      setErrorMessage(message);
+      return;
+    }
+    if (toggleForm) {
+      //sign in logic
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed in
+          // const user = userCredential.user;
+          navigate("/browse");
+        })
+        .catch((error) => {
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
+        });
+    } else {
+      //sign up logic
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          // Signed up
+          // const user = userCredential.user;
+          navigate("/browse");
+        })
+        .catch((error) => {
+          // const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorMessage);
+          // ..
+        });
+    }
   };
 
   return (
