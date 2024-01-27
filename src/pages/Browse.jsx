@@ -18,14 +18,23 @@ const Browse = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative flex justify-between">
       <Header />
+      <div>
+        <ul className="text-black  flex flex-row w-screen m-auto mt-10 ml-10 mr-10 z-11 justify-around">
+          <li>Home</li>
+          <li>Tv Shows</li>
+          <li>Movies</li>
+          <li>My List</li>
+        </ul>
+      </div>
       <div className="absolute right-20 top-6 flex justify-between ">
         <img
           className=" w-10 z-10"
           src="https://occ-0-92-90.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
           alt="icon"
         />
+
         <button
           onClick={handleSignOut}
           className="bg-red-600 pl-2 pr-2 ml-2 text-white z-10 rounded-md">
