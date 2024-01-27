@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import Header from "../components/Header";
 import validdata from "../utils/validdata";
+import { USER_AVATAR } from "../utils/constants";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { apiKey } from "../utils/env";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [toggleForm, setToggleFrom] = useState(true);
@@ -15,8 +16,7 @@ const Login = () => {
   console.log(apiKey);
   const email = useRef();
   const password = useRef();
-
-  const navigate = useNavigate();
+  const name = useRef();
 
   const toggleSignInForm = () => {
     setToggleFrom(!toggleForm);
@@ -39,7 +39,7 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           // const user = userCredential.user;
-          navigate("/browse");
+          // navigate("/browse");
         })
         .catch((error) => {
           // const errorCode = error.code;
@@ -55,7 +55,12 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           // const user = userCredential.user;
-          navigate("/browse");
+          // navigate("/browse");
+          const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value,
+            photoURL: USER_AVATAR,
+          });
         })
         .catch((error) => {
           // const errorCode = error.code;
@@ -93,6 +98,7 @@ const Login = () => {
         />
         {!toggleForm ? (
           <input
+            ref={name}
             type="text"
             className="py-4 px-4 m-2 rounded-sm bg-gray-800 text-white"
             placeholder="Full Name"

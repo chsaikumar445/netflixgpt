@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
+import { LOGO_AVATAR, USER_AVATAR } from "../utils/constants";
 
 const Browse = () => {
   const navigate = useNavigate();
@@ -20,20 +21,16 @@ const Browse = () => {
   return (
     <div className="relative flex justify-between">
       <Header />
-      <div>
+      {/* <div>
         <ul className="text-black  flex flex-row w-screen m-auto mt-10 ml-10 mr-10 z-11 justify-around">
           <li>Home</li>
           <li>Tv Shows</li>
           <li>Movies</li>
           <li>My List</li>
         </ul>
-      </div>
+      </div> */}
       <div className="absolute right-20 top-6 flex justify-between ">
-        <img
-          className=" w-10 z-10"
-          src="https://occ-0-92-90.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
-          alt="icon"
-        />
+        <img className=" w-10 z-10" src={USER_AVATAR} alt="icon" />
 
         <button
           onClick={handleSignOut}
