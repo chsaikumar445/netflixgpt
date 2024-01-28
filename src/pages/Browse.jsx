@@ -3,15 +3,11 @@ import Header from "../components/Header";
 import { auth } from "../utils/firebase";
 import { signOut } from "firebase/auth";
 import { USER_AVATAR } from "../utils/constants";
-import { API_OPTIONS } from "../utils/constants";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { addNowPlayingMovies } from "../utils/movieSlice";
+import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 
 const Browse = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-
+  useNowPlayingMovies();
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
@@ -23,19 +19,6 @@ const Browse = () => {
         navigate("/error");
       });
   };
-  const getNowPlaying = async () => {
-    const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
-      API_OPTIONS
-    );
-    const json = await data.json();
-    console.log(json.results);
-    dispatch(addNowPlayingMovies(json.results));
-  };
-
-  useEffect(() => {
-    getNowPlaying();
-  }, []);
 
   return (
     <div className="relative flex justify-between">
