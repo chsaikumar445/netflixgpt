@@ -8,12 +8,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { apiKey } from "../utils/env";
 
 const Login = () => {
   const [toggleForm, setToggleFrom] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  console.log(apiKey);
+  // console.log(apiKey);
   const email = useRef();
   const password = useRef();
   const name = useRef();
