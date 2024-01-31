@@ -22,7 +22,7 @@ const Login = () => {
   };
 
   const handleValidation = () => {
-    console.log(email.current.value, password.current.value);
+    // console.log(email.current.value, password.current.value);
     const message = validdata(email.current.value, password.current.value);
     if (message) {
       setErrorMessage(message);
